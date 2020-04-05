@@ -1,0 +1,36 @@
+body{
+    background-color: black;
+    color: white;
+}
+#select{
+    text-align: center  ;
+    left:31%;
+    width:30%;
+    right:33% ;
+    align-self: center;
+    padding: 2%;
+    display: inline-flex;
+    position: relative;
+
+}
+#select_block{
+    padding: 1%;
+}
+table{
+    width: 100%;
+    border: 1px solid black;
+}
+
+td {
+    height: 15px;
+    vertical-align: bottom;
+  }
+tr:hover {background-color: rgb(134, 134, 224);}
+span{
+    font-size: 500%;
+    text-align: center;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    color: red;
+}

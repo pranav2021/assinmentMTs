@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet"  href="styles_table.css">
+    </head>
+    <body >
+        <script>
+            var users;
+            var city=["All"];
+            var state = ["All"];
+            var country = ["All"];
+            fetch('data.json')
+                            .then(response => response.json())
+                            .then(json =>{
+                                this.users = json;
+                                var text="<tr> <td>id</td><td>city</td><td>phone</td><td>state</td><td>country</td> </tr>";
+                                for(i=0;i<users.length;i++){
+                                    var temp=0;
+                                    for(j=0;j<city.length;j++){
+                                        if(city[j]==users[i].city){
+                                            temp=1;
+                                        }
+                                    }
+                                    if(temp==0){
+                                        var x = document.getElementById("city");
+                                        var c = document.createElement("option");
+                                        c.text = users[i].city;
+                                        x.options.add(c, 1);
+                                        city.push(users[i].city);
+                                    }
+                                        
+
+                                    temp=0;
+                                    for(j=0;j<state.length;j++){
+                                        if(state[j]==users[i].state){
+                                            temp=1;
+                                        }
+                                    }
+                                    if(temp==0){
+                                        var x = document.getElementById("state");
+                                        var c = document.createElement("option");
+                                        c.text = users[i].state;
+                                        x.options.add(c, 1);
+                                        state.push(users[i].state)
+                                    }
+                                        
+
+                                    temp=0;
+                                    for(j=0;j<country.length;j++){
+                                        if(country[j]==users[i].country){
+                                            temp=1;
+                                        }
+                                    }
+                                    if(temp==0){
+                                        var x = document.getElementById("country");
+                                        var c = document.createElement("option");
+                                        c.text = users[i].country;
+                                        x.options.add(c, 1);
+                                        country.push(users[i].country)
+                                    }
+                                    
+                                    
+                                    text+="<tr><td>"+users[i].id+"</td><td>"+users[i].city+"</td><td>"+users[i].phone+"</td><td>"+users[i].state+"</td><td>"+users[i].country+"</td></tr>";
+                                }   
+                                document.getElementById("dis").innerHTML=text;
+                            });
+            
+        </script>
+        <div id="select">
+            <div id='select_block'>
+                <p>City</p>
+                <select id="city" onchange="reload()">
+                    <option>All</option>
+                </select>
+            </div>
+            <div id='select_block'>
+                <p>State</p>
+                <select id="state" onchange="reload()">
+                    <option>All</option>
+                </select>
+            </div id='select_block'>
+            <div id='select_block'>
+                <p>Country</p>
+                <select id="country" onchange="reload()">
+                    <option>All</option>
+                </select>
+            </div>
+            
+        </div>
+
+
+        <table id="dis" ></table>
+        <script>
+            function reload(){
+                fetch('data.json')
+                            .then(response => response.json())
+                            .then(json =>{
+                                this.users = json;
+                                var text="<tr><td>id</td><td>city</td><td>phone</td><td>state</td><td>country</td></tr>";
+                                var count=0;
+                                var city = document.getElementById("city").value;
+                                var state = document.getElementById("state").value;
+                                var country = document.getElementById("country").value;
+                                for(i=0;i<users.length;i++){
+                                    if(country==users[i].country || country=="All"){
+                                        if(state==users[i].state || state=="All"){
+                                            if(city==users[i].city || city=="All"){
+                                                count++;
+                                                text+="<tr><td>"+users[i].id+"</td><td>"+users[i].city+"</td><td>"+users[i].phone+"</td><td>"+users[i].state+"</td><td>"+users[i].country+"</td></tr>";
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                                if(count>0){
+                                    document.getElementById("dis").innerHTML=text;
+                                    document.getElementById("span").innerHTML=""
+                                }else{
+                                    document.getElementById("dis").innerHTML="";
+                                    document.getElementById("span").innerHTML="SORRY, No Matching data avaliable..."
+                                }
+                            });
+
+            }
+        </script>
+        <span id='span' ></span>
+    </body>
+</html>

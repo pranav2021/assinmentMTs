@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet"  href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body >
+        <div id="form">
+            <div id="pat">
+            </br>
+            </div>
+
+            <H1 id="titel">GLP Learning Model Builder</H1>
+            <h1>Sign In</h1>
+            
+            
+            <form>
+                <div class="input-field">
+                    <i class="fa fa-user icon"></i>
+                    <input id="Uname" type="text" placeholder="User-Name">
+                </div>
+                </br></br>
+                <div class="input-field">
+                    <i class="fa fa-lock icon"></i>
+                    <input id="Passowrd" type="password" placeholder="Password">
+                </div>
+
+            </form>
+            
+            </br>
+            <button id="sign_in" onclick="check()">Sign In</button>
+            
+            <div>
+                <p id="data"></p>
+            </div>
+            
+            <script>
+                
+                function check(){
+                    if(document.getElementById('Passowrd').value=='admin'&& document.getElementById('Uname').value=='admin'){
+                        window.open("Table.html","_self",);
+                    }else{
+                        document.getElementById('data').innerHTML='Invalid Username/Password'
+                    }
+                        
+                    
+                             
+                    
+                }                
+            </script>
+            
+        </div>
+        
+
+
+    </body>
+</html>
